@@ -44,7 +44,8 @@ EMOJIOS = [
 START = f"""
 **๏ Hie Baby🐒 ๏**
 """
-@bot.on_message(filters.command(["start", "aistart", f"start@{BOT_USERNAME}"]))
+
+@bot.on_message(filters.command(["start", f"start@{BOT_USERNAME}"]))
 async def restart(client, m: Message):
     accha = await m.reply_text(
         text=random.choice(EMOJIOS),
@@ -66,7 +67,7 @@ async def restart(client, m: Message):
         url="http://t.me/Your_Love_Chat_Bot?startgroup=true"
     )
 
-    # Create a button for the second row
+    # Create buttons for the second row
     second_row_buttons = [
         InlineKeyboardButton(
             text="Sᴜᴘᴘᴏʀᴛ Gʀᴏᴜᴘ",
@@ -75,13 +76,13 @@ async def restart(client, m: Message):
         InlineKeyboardButton(
             text="Sᴜᴘᴘᴏʀᴛ Cʜᴀɴɴᴇʟ",
             url="http://t.me/Learn_Online_Hacking"
-        ),
+        )
     ]
 
     # Create a button for the third row
     third_row_button = InlineKeyboardButton(
         text="Oᴡɴᴇʀ",
-        url="@Techno_Pratik"
+        url="http://t.me/Techno_Pratik"
     )
 
     # Create an InlineKeyboardMarkup containing the buttons
@@ -89,7 +90,7 @@ async def restart(client, m: Message):
         [
             [first_row_button],
             second_row_buttons,
-            [third_row_button],
+            [third_row_button]
         ]
     )
 
@@ -97,6 +98,8 @@ async def restart(client, m: Message):
         text=START,
         reply_markup=markup
     )
+
+bot.run()
 
        
 @bot.on_message(
