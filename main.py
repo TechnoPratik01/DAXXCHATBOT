@@ -44,7 +44,6 @@ EMOJIOS = [
 START = f"""
 **๏ Hie Baby🐒 ๏**
 """
-
 @bot.on_message(filters.command(["start", "aistart", f"start@{BOT_USERNAME}"]))
 async def restart(client, m: Message):
     accha = await m.reply_text(
@@ -61,19 +60,44 @@ async def restart(client, m: Message):
     await asyncio.sleep(0.2)
     await accha.edit("𝐒𝐭𝐚𝐫𝐭")
 
-    # Create a button with a link
-    button = InlineKeyboardButton(
-        text="Add me to your group",
+    # Create a button for the first row
+    first_row_button = InlineKeyboardButton(
+        text="Aᴅᴅ ᴍᴇ ʏᴏᴜʀ Gʀᴏᴜᴘ Bᴀʙʏ",
         url="http://t.me/Your_Love_Chat_Bot?startgroup=true"
     )
-    
-    # Create an InlineKeyboardMarkup containing the button
-    markup = InlineKeyboardMarkup([[button]])
+
+    # Create a button for the second row
+    second_row_buttons = [
+        InlineKeyboardButton(
+            text="Sᴜᴘᴘᴏʀᴛ Gʀᴏᴜᴘ",
+            url="http://t.me/Online_Hacking_Group"
+        ),
+        InlineKeyboardButton(
+            text="Sᴜᴘᴘᴏʀᴛ Cʜᴀɴɴᴇʟ",
+            url="http://t.me/Learn_Online_Hacking"
+        ),
+    ]
+
+    # Create a button for the third row
+    third_row_button = InlineKeyboardButton(
+        text="Oᴡɴᴇʀ",
+        url="@Techno_Pratik"
+    )
+
+    # Create an InlineKeyboardMarkup containing the buttons
+    markup = InlineKeyboardMarkup(
+        [
+            [first_row_button],
+            second_row_buttons,
+            [third_row_button],
+        ]
+    )
 
     await m.reply_text(
         text=START,
         reply_markup=markup
     )
+
        
 @bot.on_message(
     filters.command(["chatbot off", f"chatbot@{BOT_USERNAME} off"], prefixes=["/", ".", "?", "-"])
