@@ -40,56 +40,39 @@ EMOJIOS = [
       "🌿",
       "⚡",
 ]
-      
-START = f"""
-**๏ Hie Baby🐒 ๏**
+  START = f"""
+**Discover our AI Chat Bot on Telegram – enjoy rapid, abuse-free responses, easy and friendly conversations, just like chatting with friends. Prioritize a healthy, enjoyable chat experience with our AI companion.**
 """
+
 @bot.on_message(filters.command(["start", f"start@{BOT_USERNAME}"]))
 async def restart(client, m: Message):
     # Send the image with the description
-    image_caption = (
-        "Discover our AI Chat Bot on Telegram – enjoy rapid, abuse-free responses, easy and friendly conversations,"
-        " just like chatting with friends. Prioritize a healthy, enjoyable chat experience with our AI companion."
-    )
-    await m.reply_photo(photo="https://te.legra.ph/file/4ec5ae4381dffb039b4ef.jpg", caption=image_caption)
-
-    accha = await m.reply_text(
-        text=random.choice(EMOJIOS),
-    )
-    await asyncio.sleep(1)
-    await accha.edit("𝐒𝐭𝐚𝐫𝐭𝐢𝐧𝐠..")
-    await asyncio.sleep(0.1)
-    await accha.edit("𝐒𝐭𝐚𝐫𝐭𝐢𝐧𝐠...")
-    await asyncio.sleep(0.1)
-    await accha.edit("𝐒𝐭𝐚𝐫𝐭𝐢𝐧𝐠....")
-    await asyncio.sleep(0.1)
-    await accha.edit("𝐒𝐭𝐚𝐫𝐭𝐞𝐝.✓")
-    await asyncio.sleep(0.2)
-    await accha.edit("𝐒𝐭𝐚𝐫𝐭")
-
-    # Create a button for the first row
-    first_row_button = InlineKeyboardButton(
-        text="Aᴅᴅ ᴍᴇ ʏᴏᴜʀ Gʀᴏᴜᴘ Bᴀʙʏ",
-        url="http://t.me/Your_Love_Chat_Bot?startgroup=true"
-    )
-
-    # Create buttons for the second row
-    second_row_buttons = [
-        InlineKeyboardButton(
-            text="Sᴜᴘᴘᴏʀᴛ Gʀᴏᴜᴘ",
-            url="http://t.me/Online_Hacking_Group"
-        ),
-        InlineKeyboardButton(
-            text="Sᴜᴘᴘᴏʀᴛ Cʜᴀɴɴᴇʟ",
-            url="http://t.me/Learn_Online_Hacking"
+    await m.reply_photo(
+        photo="https://te.legra.ph/file/4ec5ae4381dffb039b4ef.jpg",
+        caption=START,
+        reply_markup=InlineKeyboardMarkup(
+            [
+                [InlineKeyboardButton(
+                    text="Aᴅᴅ ᴍᴇ ʏᴏᴜʀ Gʀᴏᴜᴘ Bᴀʙʏ",
+                    url="http://t.me/Your_Love_Chat_Bot?startgroup=true"
+                )],
+                [
+                    InlineKeyboardButton(
+                        text="Sᴜᴘᴘᴏʀᴛ Gʀᴏᴜᴘ",
+                        url="http://t.me/Online_Hacking_Group"
+                    ),
+                    InlineKeyboardButton(
+                        text="Sᴜᴘᴘᴏʀᴛ Cʜᴀɴɴᴇʟ",
+                        url="http://t.me/Learn_Online_Hacking"
+                    ]
+                ],
+                [InlineKeyboardButton(
+                    text="Oᴡɴᴇʀ",
+                    url="http://t.me/Techno_Pratik"
+                )]
+            ]
         )
-    ]
-
-    # Create a button for the third row
-    third_row_button = InlineKeyboardButton(
-        text="Oᴡɴᴇʀ",
-        url="http://t.me/Techno_Pratik"
-    )
+)    
 
     # Create an InlineKeyboardMarkup containing the buttons
     markup = InlineKeyboardMarkup(
