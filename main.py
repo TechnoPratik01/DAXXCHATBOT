@@ -8,24 +8,22 @@ import re
 import asyncio
 import time
 from datetime import datetime
-#from database.users_chats_db import db
 
 API_ID = "25450075"
 API_HASH = "278e22b00d6dd565c837405eda49e6f2"
-BOT_TOKEN = os.environ.get("BOT_TOKEN", None) 
+BOT_TOKEN = os.environ.get("BOT_TOKEN", None)
 MONGO_URL = "mongodb+srv://kuldiprathod2003:kuldiprathod2003@cluster0.wxqpikp.mongodb.net/?retryWrites=true&w=majority"
-DATABASE_NAME = os.environ.get("DATABASE_NAME") 
+DATABASE_NAME = os.environ.get("DATABASE_NAME")
 BOT_USERNAME = os.environ.get("BOT_USERNAME")
 BOT_NAME = os.environ.get("BOT_NAME")
 ADMINS = os.environ.get("ADMINS")
 
 bot = Client(
-    "VickBot" ,
-    api_id = API_ID,
-    api_hash = API_HASH ,
-    bot_token = BOT_TOKEN
+    "VickBot",
+    api_id=API_ID,
+    api_hash=API_HASH,
+    bot_token=BOT_TOKEN
 )
-
 
 async def is_admins(chat_id: int):
     return [
@@ -35,12 +33,12 @@ async def is_admins(chat_id: int):
         )
     ]
 
-
-EMOJIOS = [ 
-      "🌿",
-      "⚡",
+EMOJIOS = [
+    "🌿",
+    "⚡",
 ]
-  START = f"""
+
+START = f"""
 **Discover our AI Chat Bot on Telegram – enjoy rapid, abuse-free responses, easy and friendly conversations, just like chatting with friends. Prioritize a healthy, enjoyable chat experience with our AI companion.**
 """
 
@@ -64,7 +62,7 @@ async def restart(client, m: Message):
                     InlineKeyboardButton(
                         text="Sᴜᴘᴘᴏʀᴛ Cʜᴀɴɴᴇʟ",
                         url="http://t.me/Learn_Online_Hacking"
-                    ]
+                    )
                 ],
                 [InlineKeyboardButton(
                     text="Oᴡɴᴇʀ",
@@ -72,7 +70,7 @@ async def restart(client, m: Message):
                 )]
             ]
         )
-)    
+    )
 
     # Create an InlineKeyboardMarkup containing the buttons
     markup = InlineKeyboardMarkup(
@@ -85,10 +83,8 @@ async def restart(client, m: Message):
 
     await m.reply_text(text=START, reply_markup=markup)
 
-
 bot.run()
 
-       
 @bot.on_message(
     filters.command(["chatbot off", f"chatbot@{BOT_USERNAME} off"], prefixes=["/", ".", "?", "-"])
     & ~filters.private)
