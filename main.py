@@ -48,7 +48,7 @@ START = f"""
 @bot.on_message(filters.command(["start", "aistart", f"start@{BOT_USERNAME}"]))
 async def restart(client, m: Message):
     accha = await m.reply_text(
-                text = random.choice(EMOJIOS),
+        text=random.choice(EMOJIOS),
     )
     await asyncio.sleep(1)
     await accha.edit("𝐒𝐭𝐚𝐫𝐭𝐢𝐧𝐠..")
@@ -60,6 +60,20 @@ async def restart(client, m: Message):
     await accha.edit("𝐒𝐭𝐚𝐫𝐭𝐞𝐝.✓")
     await asyncio.sleep(0.2)
     await accha.edit("𝐒𝐭𝐚𝐫𝐭")
+
+    # Create a button with a link
+    button = InlineKeyboardButton(
+        text="Add me to your group",
+        url="http://t.me/Your_Love_Chat_Bot?startgroup=true"
+    )
+    
+    # Create an InlineKeyboardMarkup containing the button
+    markup = InlineKeyboardMarkup([[button]])
+
+    await m.reply_text(
+        text=START,
+        reply_markup=markup
+    )
        
 @bot.on_message(
     filters.command(["chatbot off", f"chatbot@{BOT_USERNAME} off"], prefixes=["/", ".", "?", "-"])
