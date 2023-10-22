@@ -44,9 +44,15 @@ EMOJIOS = [
 START = f"""
 **๏ Hie Baby🐒 ๏**
 """
-
 @bot.on_message(filters.command(["start", f"start@{BOT_USERNAME}"]))
 async def restart(client, m: Message):
+    # Send the image with the description
+    image_caption = (
+        "Discover our AI Chat Bot on Telegram – enjoy rapid, abuse-free responses, easy and friendly conversations,"
+        " just like chatting with friends. Prioritize a healthy, enjoyable chat experience with our AI companion."
+    )
+    await m.reply_photo(photo="https://te.legra.ph/file/4ec5ae4381dffb039b4ef.jpg", caption=image_caption)
+
     accha = await m.reply_text(
         text=random.choice(EMOJIOS),
     )
@@ -94,10 +100,8 @@ async def restart(client, m: Message):
         ]
     )
 
-    await m.reply_text(
-        text=START,
-        reply_markup=markup
-    )
+    await m.reply_text(text=START, reply_markup=markup)
+
 
 bot.run()
 
