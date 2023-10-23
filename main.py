@@ -1,23 +1,20 @@
 from pyrogram import Client, filters
 from pyrogram.types import *
 from pymongo import MongoClient
-import requests
 import random
 import os
-import re
-import asyncio
-import time
-from datetime import datetime
 
-API_ID = "25450075"
-API_HASH = "278e22b00d6dd565c837405eda49e6f2"
-BOT_TOKEN = os.environ.get("BOT_TOKEN", None)
-MONGO_URL = "mongodb+srv://kuldiprathod2003:kuldiprathod2003@cluster0.wxqpikp.mongodb.net/?retryWrites=true&w=majority"
-DATABASE_NAME = os.environ.get("DATABASE_NAME")
-BOT_USERNAME = os.environ.get("BOT_USERNAME")
-BOT_NAME = os.environ.get("BOT_NAME")
-ADMINS = os.environ.get("ADMINS")
+# Define your API credentials and other environment variables
+API_ID = "your_api_id"
+API_HASH = "your_api_hash"
+BOT_TOKEN = "your_bot_token"
+MONGO_URL = "your_mongo_url"
+DATABASE_NAME = "your_database_name"
+BOT_USERNAME = "your_bot_username"
+BOT_NAME = "your_bot_name"
+ADMINS = "your_admins_list"  # This should be a list, not a string
 
+# Initialize your Pyrogram client
 bot = Client(
     "VickBot",
     api_id=API_ID,
@@ -25,65 +22,45 @@ bot = Client(
     bot_token=BOT_TOKEN
 )
 
-async def is_admins(chat_id: int):
-    return [
-        member.user.id
-        async for member in bot.iter_chat_members(
-            chat_id, filter="administrators"
-        )
-    ]
-
-EMOJIOS = [
-    "🌿",
-    "⚡",
-]
-
-START = f"""
+# Define your start message
+START = """
 **Discover our AI Chat Bot on Telegram – enjoy rapid, abuse-free responses, easy and friendly conversations, just like chatting with friends. Prioritize a healthy, enjoyable chat experience with our AI companion.**
 """
 
 @bot.on_message(filters.command(["start", f"start@{BOT_USERNAME}"]))
-async def restart(client, m: Message):
-    # Send the image with the description
-    await m.reply_photo(
+async def start(client, message):
+    # Send the start message with a photo and an inline button
+    await message.reply_photo(
         photo="https://te.legra.ph/file/4ec5ae4381dffb039b4ef.jpg",
         caption=START,
         reply_markup=InlineKeyboardMarkup(
             [
                 [InlineKeyboardButton(
-                    text="Aᴅᴅ ᴍᴇ ʏᴏᴜʀ Gʀᴏᴜᴘ Bᴀʙʏ",
+                    text="Add me to your group",
                     url="http://t.me/Your_Love_Chat_Bot?startgroup=true"
                 )],
                 [
                     InlineKeyboardButton(
-                        text="Sᴜᴘᴘᴏʀᴛ Gʀᴏᴜᴘ",
+                        text="Support Group",
                         url="http://t.me/Online_Hacking_Group"
                     ),
                     InlineKeyboardButton(
-                        text="Sᴜᴘᴘᴏʀᴛ Cʜᴀɴɴᴇʟ",
+                        text="Support Channel",
                         url="http://t.me/Learn_Online_Hacking"
                     )
                 ],
                 [InlineKeyboardButton(
-                    text="Oᴡɴᴇʀ",
+                    text="Owner",
                     url="http://t.me/Techno_Pratik"
                 )]
             ]
         )
     )
 
-    # Create an InlineKeyboardMarkup containing the buttons
-    markup = InlineKeyboardMarkup(
-        [
-            [first_row_button],
-            second_row_buttons,
-            [third_row_button]
-        ]
-    )
+# Other message handlers and functionality can be defined similarly
 
-    await m.reply_text(text=START, reply_markup=markup)
-
-bot.run()
+if __name__ == "__main__":
+    bot.run()
 
 @bot.on_message(
     filters.command(["chatbot off", f"chatbot@{BOT_USERNAME} off"], prefixes=["/", ".", "?", "-"])
