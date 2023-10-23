@@ -5,10 +5,10 @@ import random
 import os
 
 # Define your API credentials and other environment variables
-API_ID = "your_api_id"
-API_HASH = "your_api_hash"
-BOT_TOKEN = "your_bot_token"
-MONGO_URL = "your_mongo_url"
+API_ID = "20850845"
+API_HASH = "07e758e9dfa091a98b8779304dcc7b98"
+BOT_TOKEN = "6370199975:AAEa0HnfdU2PS3N52nU07UNTm06eniqEBNI"
+MONGO_URL = "mongodb+srv://voketev197:TBfxGI8uP4boGXKf@testing.a7ywtrg.mongodb.net/?retryWrites=true&w=majority"
 DATABASE_NAME = "your_database_name"
 BOT_USERNAME = "your_bot_username"
 BOT_NAME = "your_bot_name"
