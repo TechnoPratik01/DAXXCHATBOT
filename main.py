@@ -1,20 +1,15 @@
 from pyrogram import Client, filters
-from pyrogram.types import *
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 from pymongo import MongoClient
-import random
 import os
+import random
 
-# Define your API credentials and other environment variables
-API_ID = "20850845"
-API_HASH = "07e758e9dfa091a98b8779304dcc7b98"
-BOT_TOKEN = "6370199975:AAEa0HnfdU2PS3N52nU07UNTm06eniqEBNI"
-MONGO_URL = "mongodb+srv://voketev197:TBfxGI8uP4boGXKf@testing.a7ywtrg.mongodb.net/?retryWrites=true&w=majority"
-DATABASE_NAME = "your_database_name"
+API_ID = "your_api_id"
+API_HASH = "your_api_hash"
+BOT_TOKEN = "your_bot_token"
+MONGO_URL = "your_mongo_url"
 BOT_USERNAME = "your_bot_username"
-BOT_NAME = "your_bot_name"
-ADMINS = "your_admins_list"  # This should be a list, not a string
 
-# Initialize your Pyrogram client
 bot = Client(
     "VickBot",
     api_id=API_ID,
@@ -22,42 +17,27 @@ bot = Client(
     bot_token=BOT_TOKEN
 )
 
-# Define your start message
-START = """
-**Discover our AI Chat Bot on Telegram – enjoy rapid, abuse-free responses, easy and friendly conversations, just like chatting with friends. Prioritize a healthy, enjoyable chat experience with our AI companion.**
-"""
+# Define your InlineKeyboardButton
+first_row_button = InlineKeyboardButton(
+    text="Add me to your group",
+    url="http://t.me/Your_Love_Chat_Bot?startgroup=true"
+)
+
+async def is_admins(chat_id: int):
+    return [
+        member.user.id
+        async for member in bot.iter_chat_members(chat_id, filter="administrators")
+    ]
 
 @bot.on_message(filters.command(["start", f"start@{BOT_USERNAME}"]))
-async def start(client, message):
-    # Send the start message with a photo and an inline button
+async def start_command(client, message: Message):
     await message.reply_photo(
         photo="https://te.legra.ph/file/4ec5ae4381dffb039b4ef.jpg",
-        caption=START,
-        reply_markup=InlineKeyboardMarkup(
-            [
-                [InlineKeyboardButton(
-                    text="Add me to your group",
-                    url="http://t.me/Your_Love_Chat_Bot?startgroup=true"
-                )],
-                [
-                    InlineKeyboardButton(
-                        text="Support Group",
-                        url="http://t.me/Online_Hacking_Group"
-                    ),
-                    InlineKeyboardButton(
-                        text="Support Channel",
-                        url="http://t.me/Learn_Online_Hacking"
-                    )
-                ],
-                [InlineKeyboardButton(
-                    text="Owner",
-                    url="http://t.me/Techno_Pratik"
-                )]
-            ]
-        )
+        caption="Your START message goes here.",
+        reply_markup=InlineKeyboardMarkup([[first_row_button]])
     )
 
-# Other message handlers and functionality can be defined similarly
+# Define other commands and functions here
 
 if __name__ == "__main__":
     bot.run()
