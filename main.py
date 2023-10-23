@@ -4,11 +4,11 @@ from pymongo import MongoClient
 import os
 import random
 
-API_ID = "your_api_id"
-API_HASH = "your_api_hash"
-BOT_TOKEN = "your_bot_token"
-MONGO_URL = "your_mongo_url"
-BOT_USERNAME = "your_bot_username"
+API_ID = "25450075"
+API_HASH = "278e22b00d6dd565c837405eda49e6f2"
+BOT_TOKEN = "6370199975:AAEa0HnfdU2PS3N52nU07UNTm06eniqEBNI"
+MONGO_URL = "mongodb+srv://kuldiprathod2003:kuldiprathod2003@cluster0.wxqpikp.mongodb.net/?retryWrites=true&w=majority"
+BOT_USERNAME = "doraemon_chat_bot"
 
 bot = Client(
     "VickBot",
